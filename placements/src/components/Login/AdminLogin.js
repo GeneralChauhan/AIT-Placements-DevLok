@@ -3,7 +3,12 @@ import '../Login/Login.css'
 import logo from '../../assets/Logo.png';
 
 
+const LoginForm = () => {
 
+  const [email , setEmail] = useState("");
+  const [password , setPassword] = useState("");
+  const [role , setRole] = useState("");
+  const [logindata , setLoginData] = useState([]);
 
 const LoginForm = () => {
 
@@ -64,6 +69,4 @@ const LoginForm = () => {
 
 
 
-export default LoginForm; 
-
-
+export default LoginForm; }
