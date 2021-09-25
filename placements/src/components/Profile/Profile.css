@@ -1,0 +1,41 @@
+.emp-profile{
+    margin-left: 25%;
+}
+
+.userimage{
+    margin-top: 10%;
+    
+
+}
+
+.userdata{
+    display: flex;
+}
+
+.aboutuser{
+    margin-top: 8%;
+    margin-left: 3%;
+    display: inline-block;
+    justify-content: space-between;
+    
+    
+}
+
+.userdetails{
+    display: flex;
+   
+    
+
+}
+.userdetails h3{
+  padding: 5%;
+  border-radius: 25px;
+  border: 1px solid rgb(40, 18, 236);
+  padding-left: 15px;
+  font-size: 16px;
+  border-bottom-width: 2px;
+  flex-wrap:wrap;
+  margin-left: 10%;
+    
+   
+}

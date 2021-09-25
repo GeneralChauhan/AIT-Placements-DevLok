@@ -1,75 +1,69 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import '../Login/Login.css'
 import logo from '../../assets/Logo.png';
 
-// import 'react-dropdown/style.css';
 
 
 
+const LoginForm = () => {
 
-class Admin extends Component{
-    
-  render(){
-    return(
-      <div id="loginform">
-        <FormHeader title="Login" />
-        <Form />
-        
-      </div>
-    )
+  const [email , setEmail] = useState("");
+  const [password , setPassword] = useState("");
+  const [role , setRole] = useState("");
+  const [logindata , setLoginData] = useState([]);
+
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    const entry = {role : role, email:email , password: password }
+    setLoginData([entry]);
+    console.log(logindata);
   }
+
+  function handleChange(event){
+    setRole(event.target.value)
+  }
+
+
+    
+  
+  return(
+      <form action="POST" onSubmit = {submitForm}>
+      <div id="loginform" >
+          <img src={logo} alt="logo" className="image"/>
+          <div class="row"> 
+                <label htmlFor="role">Role</label>
+                
+                <select id="cars" name="cars" placeholder="Enter Role" onChange={handleChange}>
+                    <option>Select</option>
+                    <option value="Admin" >Admin</option>
+                    <option value="Student">Student</option>
+                </select>
+          </div> 
+          <div class="row">
+            <label htmlFor="email">Email ID</label>
+            <input type="text" placeholder="Enter your email" value={email} 
+              onChange={(e)=> setEmail(e.target.value)}/>
+          </div>
+          <div class="row">
+            <label htmlFor="password">Password</label>
+            <input type="password" placeholder="Enter your password" value={password}
+              onChange={(e)=>setPassword(e.target.value)}/>
+          </div>
+          <div id="button" class="row">
+            <button type="submit">Log in</button>
+          </div>
+          
+        
+        </div>
+        </form>
+  )
+  
 }
 
-const options = [
-    'Admin', 'Student', 'Staff Member'
-  ];
-const defaultOption = options[1];
-
-const FormHeader = props => (
-    <h2 id="headerTitle">{props.title}</h2>
-);
-
-
-const Form = props => (
-    
-   <div>
-     <img src={logo} alt="logo" className="image"/>
-     {/* <FormInput description="Role" placeholder="Enter your Role" type="text"/>
-     <Dropdown options={options} onChange={this.} value={defaultOption} placeholder="Select an option" />;
-      */}
-        <div class="row"> 
-            <label >Role</label>
-            
-            <select id="cars" name="cars" placeholder="Enter Role" className="">
-                <option value="Admin">Admin</option>
-                <option value="Student">Student</option>
-            </select>
-        </div> 
-     
-     <FormInput description="Email ID" placeholder="Enter your email" type="text" />
-     <FormInput description="Password" placeholder="Enter your password" type="password" />
-     
-     <FormButton title="Log in"/>
-   </div>
-);
-
-const FormButton = props => (
-  <div id="button" class="row">
-    <button>{props.title}</button>
-  </div>
-);
-
-const FormInput = props => (
-  <div class="row">
-    <label>{props.description}</label>
-    <input type={props.type} placeholder={props.placeholder}/>
-  </div>  
-);
 
 
 
-
-
-export default Admin; 
+export default LoginForm; 
 
 
