@@ -7,15 +7,22 @@ import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import PieChartIcon from '@material-ui/icons/PieChart';
 import Backdrop from '../../utils/Backdrop/Backdrop';
 import { Link } from "react-router-dom";
-
+import Form from '../Login/AdminLogin'
 
 
 class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        sideDrawerOpen: false
+        sideDrawerOpen: false,
+        role:'admin'
     };
+  }
+
+  toLoginPage=()=>{
+    debugger;
+    <Link to='/Form'></Link>
+   
   }
 
   drawerToggleClickHandler = () => {
@@ -35,6 +42,7 @@ class Sidebar extends Component {
         icon: <PieChartIcon />,
         link: "/stats"
       }
+
     ];
 
     let sideDrawer = "Navbar";
@@ -48,8 +56,11 @@ class Sidebar extends Component {
     }
 
 
+    
+
 return (
  <div className="sidebar">
+   
    <button className="toggle-button" onClick={this.drawerToggleClickHandler}>
           <img whileHover={{ scale: 1.2,transition: { duration: 0.2 }, }} className="burgermenu" src={menu_icon} alt="oss sidebar"/>
     </button>
@@ -60,6 +71,9 @@ return (
       {sidebarData.map((val,key)=> {
         
           return(
+            <>
+
+
               <Link to={val.link}>
             <li className="row" key={key} >
               {" "}
@@ -69,11 +83,33 @@ return (
             </div>
             
           </li>
-          </Link>);
+
+          
+          </Link>
+
+            
+        </>
+          
+          
+          );
       
 
       })}
     </ul>
+
+    <div className="button-option lower">
+            <div id="button" class="row">
+              <button type="button" ><Link to='/x'>LOGOUT</Link></button>
+              
+            </div>
+            {this.state.role === "admin" ? (
+            <div id="button" class="row">
+              <button type="button"><Link to='/addNotice'>ADD</Link> </button>
+            </div>
+             ) : (
+              <div></div>
+            )}
+    </div>
     
   </div>
   {/* < Backdrop /> */}
