@@ -10,13 +10,31 @@ import {
 import CompList from './components/compniesHomepage/companyPage';
 import Sidebar from './components/SideBar/sidebar'
 
-import AdminLogin from './components/Login/AdminLogin'
+import Form from './components/Login/AdminLogin'
 import Register from './components/Register/Register';
 import Profile from './components/Profile/Profile';
+import PreviewBar from './components/previewSection/previewBar';
+import AddCompany from './components/addCompany/tpo';
+import Upload from './components/upload/Upload';
+import NoticeEditor from './components/addCompany/components/noticeEditor';
 
 
 function App() {
   return (
+    // <div className="App">
+    //   <Route exact path="/login" component={Form}/>
+    //   {/* <Route exact path="/Dashboard">
+    //     <div className="mainPage">
+    //       <Sidebar/>
+    //       <CompList/>
+    //     </div>
+
+    //   </Route> */}
+    //   <Route exact path="/profile" component={Profile}/>
+    //   {/* <Route exact path="/notice" component={NoticeEditor}/>
+    //   <Route exact path="/notice" component={NoticeEditor}/>
+    //   <Route exact path="/notice" component={NoticeEditor}/>  */}
+    // </div>
     
     <Router>
       <Switch>
@@ -25,18 +43,22 @@ function App() {
         </Route>
         
         <Route path = "/profile">
-          <Profile/>
         </Route>
-        <Route path = "/login">
-          <AdminLogin/>
+        <Route path = "/x">
+          <Form/>
         </Route>
-        <Route path = "/" exact>
-          <div>
-          <Sidebar/> 
-          <CompList/>
-        
+        <Route path = "/dashboard" exact>
+          <div className="mainPage">
+          <Sidebar /> 
+          <CompList />
+          {/* <Upload/> */}
+
           
+          {/* <PreviewBar/> */}
           </div>
+        </Route>
+        <Route path = '/addNotice'>
+          <AddCompany/>
         </Route>
         </Switch>
     </Router>
