@@ -4,13 +4,18 @@
 
 
 #loginform{
-  
+  width: fit-content;
+  background-color: #FEFDFF;
+  font-family: Inter;  
   max-width: 500px;
   min-width: 300px;
   margin: 100px auto;
+  padding: 20px;
   background-color: #FFFFFF;
   border-radius: 25px;
   margin-top: 0em;
+
+
   
 }
 
@@ -62,15 +67,20 @@
   color: rgba(187,187,187,0.9);
 }
 
+.button-option{
+  display: flex;
+  justify-content: center;
+}
+
 .row button{
   border-radius: 5px;
-  width: 80%;
+  
   height: 40px;
+  font-family: Inter;
   font-size: 1.3rem;
   color: white;
   font-weight: 700;
-  background: rgb(34, 50, 195);
-  background: linear-gradient(90deg, rgb(49, 86, 185) 0%,     rgb(8, 175, 226) 100%);
+  background-color: #1DA1F2;
   border: 0px;
   cursor: pointer;
   transition: opacity 0.25s ease-out;
@@ -83,12 +93,6 @@
 #button{
   padding-bottom: 1.5rem;
 }
-
-
-
-
-
-
 #iconGroup{
   display: flex;
   justify-content: center;
@@ -103,6 +107,153 @@
    text-align: center;
    padding-top: 2rem;
    margin-top: 1.5rem;
+}
+
+
+.Backbody
+{
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', sans-serif; 
+  border: none;
+  
+
+  
+}
+
+.rgform{
+  max-width: 700px;
+  width:100%;
+  
+  background: white;
+  padding: 25px 35px;
+  border-radius: 5px;
+  background-color: #FEFDFF;
+  box-shadow: 0px 0px 3px rgba(72, 196, 129, 0.4);
+  
+}
+
+.rgform .title{
+  font-size: 28px;
+  font-weight: 900;
+  position: relative;
+
+}
+
+.rgform form .user-details{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+  
+  
+}
+
+form .user-details .input-box{
+  margin-bottom: 15px;
+  width: calc(50%-20px);
+ 
+
+}
+
+
+.user-details .input-box .details
+{ 
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.user-details .input-box input{
+  height: 45px;
+  width: 100%;
+  outline: none;
+  border-radius: 5px;
+  border: 0.5px solid #ccc ;
+  
+  padding-left: 15px;
+  font-size: 16px;
+  
+
+}
+
+.user-details .input-box select{
+  height: 45px;
+  width: 100%;
+  outline: none;
+  border-radius: 5px;
+  border: 0.5px solid #ccc;
+  
+  padding-left: 15px;
+  font-size: 16px;
+
+  transition:all 0.3s ease;
+
+}
+
+
+
+form .Button{
+  height: 45px;
+  margin: 45px 0;
+}
+
+form .Button button{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  color:#fff;
+  border:0.5px solid #ccc;
+  background-color: #1da1f2;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  
+
+
+
+}
+
+form .Button button:hover{
+  
+}
+
+.error {
+  color: red;
+}
+
+@media (max-width:584px){
+  .rgform{
+    max-width: 700px;
+
+  }
+  form .user-details .input-box{
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  .rgform form .user-details{
+    max-height: 300px;
+    overflow-y: scroll ;
+  }
+
+  .user-details::-webkit-scrollbar{
+    width: fit-content;
+  }
+}
+
+
+
+
+
+
+.r{
+  flex:50%;
+}
+.l{
+  flex:50%;
 }
 
 

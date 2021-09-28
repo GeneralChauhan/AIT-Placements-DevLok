@@ -19,9 +19,14 @@ const userSchema = new mongoose.Schema({
         match: [/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'Please add valid email address.'],
     },
     regid: {
-        type: String,
+        type: Number,
         unique: true,
         required: [true, 'Please provide your registration id'],
+    },
+    username: {
+        type: String,
+        required:[false],
+        unique:false,
     },
     year: {
         type: String,
@@ -38,6 +43,10 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Password can not be blank'],
         select: false,
         minlength: 6,
+    },
+    role:{
+        type:String,
+        default:"student"
     },
     createdAt: {
         type: Date,
@@ -69,5 +78,7 @@ userSchema.methods.matchPassword = async function(enteredPassword) {
     // eslint-disable-next-line no-return-await
     return await bcrypt.compare(enteredPassword, this.password);
 };
-
+userSchema.methods.matchType = async function(enterdType){
+    
+}
 module.exports = mongoose.model('User', userSchema);

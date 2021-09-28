@@ -4,8 +4,6 @@
 
 .userimage{
     margin-top: 10%;
-    
-
 }
 
 .userdata{
@@ -17,15 +15,10 @@
     margin-left: 3%;
     display: inline-block;
     justify-content: space-between;
-    
-    
 }
 
 .userdetails{
     display: flex;
-   
-    
-
 }
 .userdetails h3{
   padding: 5%;
@@ -36,6 +29,4 @@
   border-bottom-width: 2px;
   flex-wrap:wrap;
   margin-left: 10%;
-    
-   
 }

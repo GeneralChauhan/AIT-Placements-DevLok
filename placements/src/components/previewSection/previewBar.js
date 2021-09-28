@@ -1,12 +1,14 @@
 import React from 'react';
 import './previewBar.css';
-import user_icon from '../../assets/user.png'
+import user_icon from '../../assets/user.png';
+import Profile from '../Profile/Profile';
 
 
 
 const PreviewBar = (props) => {
     return (
         <div class="previewBar">
+            <div>
             <div class='userSection'>
                 <img src={user_icon} alt='User' />
                 
@@ -19,8 +21,9 @@ const PreviewBar = (props) => {
                 </div>
                 
             </div>
+            </div>
             <br/>
-            <hr />
+            
                 {props.comp?<div className="mainly">
                     <p class="bold">{props.comp.company}</p>
                     <p class="type">{props.comp.type}</p>
