@@ -194,7 +194,8 @@ function validate(){
 
 
               <div className='loggy'>
-                  <button type="submit" onClick={clickLogin}>Log in</button>
+                  <button type="submit" 
+                  onClick={clickLogin}>Log in</button>
               </div>
 
               <div className='loggy'>
