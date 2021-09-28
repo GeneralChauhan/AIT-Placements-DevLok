@@ -25,7 +25,8 @@ const userSchema = new mongoose.Schema({
     },
     username: {
         type: String,
-        default:"abcde"
+        required:[false],
+        unique:false,
     },
     year: {
         type: String,
