@@ -1,18 +1,64 @@
+.uppercontent{
+    margin-top:2% ;
+    margin-left: 2%;
+    width: 60%;
+    height: 20%;
+    display: flex; 
+    border-bottom:1px solid black    ;   
+}
+.abc{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    max-width: 110%;
+}
+.input-box{
+    margin-bottom: 15px;
+    width: calc(50%-20px);   
+  }
+.input-box input{
+    margin-bottom: 15px;
+    width: calc(50%-20px); 
+    border: none;   
+    width: 414px;
+    height: 56px;  
+    background: #F5F4F7;
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .input-box input:active{
+      border: none;
+      color: #000000;
+  }
+  .input-box ::placeholder{
+      padding: 0px;
+  }
+  .details
+  { 
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+  
 .CompList{
-    display: flex;   
+    display: flex;    
     flex-direction: row;
-    height: 100%;
-    padding: 0%;
+    height: 100vh;
     flex: 80%;
+    padding: 0%;
+    margin-left: 0em;
+
+    margin: 0%;
 }
 .mid{
     display: flex;
     flex-direction: column;
     flex: 75%;    
-    height: 70%;
+    height: 100vH;
     padding: 0%;
     justify-content: center;
     align-items: center;
+
 }
 
 
@@ -20,7 +66,7 @@
 
 .cards{
     background: #ffffff;
-    box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+    background-color: #eff0fd;    
     border-radius: 6px;
     display: flex;
     flex-direction: column;
@@ -29,7 +75,7 @@
     border: 0px;
     padding: 20px;
     margin: 10px;
-    width: 90%;
+
 }
 
 .heading{
@@ -60,4 +106,74 @@
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
+}
+.mid-bottom{
+    width: 90%; 
+    height: 75%;
+    display: flex;
+    flex-direction: column;   
+    overflow-y: scroll;
+    
+ 
+}
+::-webkit-scrollbar {
+    width: 0px;
+  }
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+.wrap-button{
+    display: flex;
+}
+.btn:hover {
+    opacity:1;
+    transform: scale(1.2);
+    transition-duration: 0.2s;
+
+}
+.btn{
+    outline: none;
+    color:#fff;
+    border:0.5px solid #ccc;
+
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    letter-spacing: 1px;
+    opacity: 0.3;
+}
+
+
+.cle{
+    background: rgb(0, 174, 255);
+    outline: none;
+
+}
+.cld{
+    background: rgb(0, 0, 0);
+    outline: none;
+
+}
+.mid-up{
+    display: flex;
+    margin-top: 20px;
+    height: 20%;
+    border-bottom:1px solid black ;
+    justify-content: flex-start;
+    align-self: left;
+}
+
+.poppins{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 32px;
 }
