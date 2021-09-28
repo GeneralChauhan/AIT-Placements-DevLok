@@ -38,13 +38,15 @@ const Form = () => {
         .then((Result) =>{
           if(Result.Status == 'success'){
             console.log(Result);
-            <Redirect to="/dashboard"></Redirect>
+            <Redirect to="/dashboard" />
           }
           else{
             alert('Invalid Credentials')
           }
         })
-    //postData('http://localhost:3000/api/v1/auth/login',{role : role, email:Email , password: Password });
+
+      
+    postData('http://localhost:5000/api/v1/auth/login',{role : role, email:Email , password: Password });
     
   }}
 
@@ -71,7 +73,7 @@ const Form = () => {
     setRegisterdata([entry]);
     console.log(Registerdata);
     
-    fetch('http://localhost:3000/api/v1/auth/register',{
+    fetch('http://localhost:5000/api/v1/auth/register',{
       method: 'POST',
       headers: {
         'Content-Type':'application/json'
@@ -144,27 +146,7 @@ function validate(){
 
   return isValid;
 }
-
   
-
-    
-  
-  
-    
-  // async function postData(url = 'http://localhost:3000/api/v1/auth/login', data = {logindata}) {
-    
-  //   const response = await fetch(url, {
-  //           body: JSON.stringify(data) // body data type must match "Content-Type" header
-  //   });
-  //   return response.json(); // parses JSON response into native JavaScript objects
-  // }
-  
-  // postData('https://localhost:3000/api/v1/auth/login', { answer: 42 })
-  //   .then(data => {
-  //     console.log(data); 
-  //   });
-
-    
   
   return(
     <div>
@@ -298,15 +280,7 @@ function validate(){
         </div>
         }
     </div>
-  
-  
-          
-  
-  
-          
-              
-  
-              
+
               
             
       
