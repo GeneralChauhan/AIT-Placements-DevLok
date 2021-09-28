@@ -54,28 +54,35 @@ app.options('*', cors());
 // file Upload
 app.use(fileUpload());
 // set static folder
-const options = {
-    dotfiles: 'ignore',
-    etag: false,
-    extensions: ['htm', 'html'],
-    maxAge: '1d',
-    redirect: false,
-    setHeaders: function(res, path, stat) {
-        res.set('x-timestamp', Date.now());
-    },
-};
-app.use(express.static(path.join(__dirname, 'public'), options));
+// const options = {
+//     dotfiles: 'ignore',
+//     etag: false,
+//     extensions: ['htm', 'html'],
+//     maxAge: '1d',
+//     redirect: false,
+//     setHeaders: function(res, path, stat) {
+//         res.set('x-timestamp', Date.now());
+//     },
+// };
+// app.use(express.static(path.join(__dirname, 'public'), options));
+app.use(express.static(path.join(__dirname, 'build')));
+
 
 
 // Use Routes
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/user', user);
 app.use('/api/v1/notice',notice);
-app.get('*.*', express.static('./public/frontend')); // production
+// app.get('*.*', express.static('./public/frontend')); // production
 
-app.all('*', (req, res) => {
-    res.status(200).sendFile('/', {root: './public/frontend'});
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
+
+
+// app.all('*', (req, res) => {
+//     res.status(200).sendFile('/', {root: './public/frontend'});
+// });
 
 app.use(errorHandler);
 const PORT = process.env.PORT || 5000;

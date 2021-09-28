@@ -12,9 +12,11 @@ exports.register = asyncHandler(async (req, res, next)=>{
 });
 
 exports.login = asyncHandler(async (req, res, next) => {
-    const {email, password,type} = req.body;
+    console.log(req.body);
+    const {email, password,role} = req.body;
+    
 
-    if(!type){
+    if(!role){
         return next(new ErrorResponse('Please select a type',400));
     }
     // Validate email & password
@@ -23,14 +25,14 @@ exports.login = asyncHandler(async (req, res, next) => {
     }
 
     // Check for user
-    const user = await User.findOne({email}).select('+password').select('+type');
+    const user = await User.findOne({email}).select('+password').select('+role');
 
     if (!user) {
         return next(new ErrorResponse('Invalid credentials', 401));
     }
 
     //  Check if type matches
-    if(user.type!=type) {
+    if(user.role!=role) {
         return next(new ErrorResponse('Invalid credentials',401));
     }
     // Check if password matches
