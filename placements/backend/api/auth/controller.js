@@ -4,28 +4,38 @@ const User = require('../user/model');
 
 
 exports.register = asyncHandler(async (req, res, next)=>{
-    const {fname,lname, email,year,branch,regid, password} = req.body;
-    const user = await User.create({fname,lname,branch,year,regid, email, password});
+    const {fname,lname, email,year,branch,regid, password,username,role} = req.body;
+    req.body.username = req.body.fname + req.body.regid;
+    const user = await User.create({fname,lname,branch,year,regid, email, password,username,role});
     sendTokenResponse(user, 200, res);
+    console.log(user);
 });
 
 exports.login = asyncHandler(async (req, res, next) => {
-    const {email, password} = req.body;
+    const {email, password,type} = req.body;
 
+    if(!type){
+        return next(new ErrorResponse('Please select a type',400));
+    }
     // Validate email & password
     if (!email || !password) {
         return next(new ErrorResponse('Please provide an email and password', 400));
     }
 
     // Check for user
-    const user = await User.findOne({email}).select('+password');
+    const user = await User.findOne({email}).select('+password').select('+type');
 
     if (!user) {
         return next(new ErrorResponse('Invalid credentials', 401));
     }
 
+    //  Check if type matches
+    if(user.type!=type) {
+        return next(new ErrorResponse('Invalid credentials',401));
+    }
     // Check if password matches
     const isMatch = await user.matchPassword(password);
+    
 
     if (!isMatch) {
         return next(new ErrorResponse('Invalid credentials', 401));
