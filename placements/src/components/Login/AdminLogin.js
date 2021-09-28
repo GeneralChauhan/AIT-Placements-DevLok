@@ -34,13 +34,19 @@ const Form = () => {
       const response = await fetch(url, {
               method:"POST",
               body: JSON.stringify(data) // body data type must match "Content-Type" header
-      });
-      console.log(response);
-      return response.json(); // parses JSON response into native JavaScript objects
-    }
+      }).then((Response) =>Response.json())
+        .then((Result) =>{
+          if(Result.Status == 'success'){
+            console.log(Result);
+            <Redirect to="/"></Redirect>
+          }
+          else{
+            alert('INvalid Credentials')
+          }
+        })
     //postData('http://localhost:3000/api/v1/auth/login',{role : role, email:Email , password: Password });
     
-  }
+  }}
 
   function handleChange(event){
     setRole(event.target.value)
