@@ -3,17 +3,13 @@ import '../Login/Login.css'
 import logo from '../../assets/Logo.png';
 import Register from '../Register/Register';
 import { Redirect,Link} from 'react-router-dom';
-<<<<<<< Updated upstream
-import axios from 'axios';
-import Sidebar from '../SideBar/sidebar';
-import CompList from '../compniesHomepage/companyPage';
-=======
+
 import { Route } from "react-router";
 import axios from 'axios';
 import Sidebar from '../SideBar/sidebar';
 import CompList from '../compniesHomepage/companyPage';
 import { useHistory } from "react-router-dom";
->>>>>>> Stashed changes
+
 
 
 
@@ -49,15 +45,11 @@ const Form = () => {
       // });
       const response = await axios.post('http://localhost:3000/api/v1/auth/login', { role:role, email:Email, password: Password });
       console.log(response);
-<<<<<<< Updated upstream
-      if(response.status===200){debugger;
-        <Link to='/dashboard'></Link>
-=======
+
       if(response.status===200){
         history.push("/dashboard");
         
->>>>>>> Stashed changes
-        
+
        
       }
 
@@ -200,29 +192,14 @@ function validate(){
             </div>
             <div className="button-option">
 
-<<<<<<< Updated upstream
-              <div id="buttonL" class="row login">
-                <button type="submit" onClick={clickLogin}>Log in</button>
-              </div>
-              <div id="buttonL" class="row login">
-                <button type="submit" onClick={clickLogin}>Log in</button>
-              </div>
-              <div id="buttonL" class="row login">
-=======
-              {/* <div id="buttonL" class="row login">
->>>>>>> Stashed changes
-                <button type="submit" onClick={clickLogin}>Log in</button>
-              </div> */}
+
               <div className='loggy'>
                   <button type="submit" onClick={clickLogin}>Log in</button>
               </div>
-<<<<<<< Updated upstream
-              <div id="buttonR" class="row register">
-                <button type="button" onClick={()=>setIsRegister(true)}>Register</button>
-=======
+
               <div className='loggy'>
                   <button type="submit" onClick={()=>setIsRegister(true)}>Register</button>
->>>>>>> Stashed changes
+
               </div>
             </div>
           </form>
