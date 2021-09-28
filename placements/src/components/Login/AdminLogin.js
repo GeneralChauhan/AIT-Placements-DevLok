@@ -28,17 +28,18 @@ const Form = () => {
 
 
   const clickLogin = (e) => {
-    // e.preventDefault();
-     
-    setLoginData([{type : role, email:Email , password: Password }]);
-    console.log(logindata);
-    async function postData(url = 'http://localhost:3000/api/v1/auth/login', data = {logindata}) {
-    
+    //e.preventDefault();
+    console.log({role : role, email:Email , password: Password });
+    async function postData(url, data) {
       const response = await fetch(url, {
+              method:"POST",
               body: JSON.stringify(data) // body data type must match "Content-Type" header
       });
+      console.log(response);
       return response.json(); // parses JSON response into native JavaScript objects
     }
+    //postData('http://localhost:3000/api/v1/auth/login',{role : role, email:Email , password: Password });
+    
   }
 
   function handleChange(event){
@@ -59,24 +60,17 @@ const Form = () => {
       {errorMessage && <div className="error"> {errorMessage} </div>}
 
     }
-   
-    setRegisterdata([{ fname:FirstName,lname:LastName,year:Year,branch:Branch,email:Email
-      ,Regid:RegistrationID, password: Password }]);
-    // console.log(Registerdata);
+    const entry = { fname:FirstName,lname:LastName,year:Year,branch:Branch,email:Email
+                  ,regid:RegistrationID, password: Password }
+    setRegisterdata([entry]);
+    console.log(Registerdata);
     
     fetch('http://localhost:3000/api/v1/auth/register',{
       method: 'POST',
       headers: {
         'Content-Type':'application/json'
       },
-      body: JSON.stringify({
-        fname:FirstName,
-        lname:LastName,
-        email:Email,
-        branch:Branch,
-        regid:RegistrationID,
-        password: Password
-      })
+      body: JSON.stringify(entry)
     }).then((Response) => Response.json())
       .then((Result) =>{
         if(Result.Status == 'success'){
@@ -151,13 +145,13 @@ function validate(){
   
   
     
-  async function postData(url = 'http://localhost:3000/api/v1/auth/login', data = {logindata}) {
+  // async function postData(url = 'http://localhost:3000/api/v1/auth/login', data = {logindata}) {
     
-    const response = await fetch(url, {
-            body: JSON.stringify(data) // body data type must match "Content-Type" header
-    });
-    return response.json(); // parses JSON response into native JavaScript objects
-  }
+  //   const response = await fetch(url, {
+  //           body: JSON.stringify(data) // body data type must match "Content-Type" header
+  //   });
+  //   return response.json(); // parses JSON response into native JavaScript objects
+  // }
   
   // postData('https://localhost:3000/api/v1/auth/login', { answer: 42 })
   //   .then(data => {
@@ -194,7 +188,7 @@ function validate(){
             </div>
             <div className="button-option">
               <div id="button" class="row">
-                <button type="submit" >Log in</button>
+                <button type="submit" onClick={clickLogin}>Log in</button>
               </div>
               <div id="button" class="row">
                 <button type="button" onClick={()=>setIsRegister(true)}>Register</button>
@@ -281,7 +275,7 @@ function validate(){
             </div>
   
             <div className="Button">
-                <button type="submit">Register</button>
+                <button type="submit" onClick={submitForm}>Register</button>
                 
             </div>
             <div className="Button">
