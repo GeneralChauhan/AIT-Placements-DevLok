@@ -3,24 +3,19 @@ import '../Profile/Profile.css';
 import ProfileData from '../Profile/ProfileData.json';
 import userpic from '../../assets/user.png';
 import logo from '../../assets/Logo.png';
-import Sidebar from '../SideBar/sidebar'
 
 
 
 const Profile = (props) => {
     return(
         
-        <div className="container ">
+        <div className="containe ">
         {/* <Sidebar/> */}
             <form method="" className="emp-profile">
                 
-                <div className="Profilelogo">
-                    <img src={logo} alt="Userpic" />
-
-                </div>
                 <div className="userdata ">
                     <div className="userimage">
-                        <img src={userpic} alt="Userpic" className="userimg" width="200" height="200"/>
+                        <img src={userpic} alt="Userpic" className="userimg"/>
 
                     </div>
                     <div className="aboutuser">
