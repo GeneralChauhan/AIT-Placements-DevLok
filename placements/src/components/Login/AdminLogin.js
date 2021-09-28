@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../Login/Login.css'
 import logo from '../../assets/Logo.png';
-import Register from '../Register/Register';
+
 import { Redirect,Link} from 'react-router-dom';
 
 import { Route } from "react-router";

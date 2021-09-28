@@ -11,7 +11,7 @@ import CompList from './components/compniesHomepage/companyPage';
 import Sidebar from './components/SideBar/sidebar'
 
 import Form from './components/Login/AdminLogin'
-import Register from './components/Register/Register';
+
 import Profile from './components/Profile/Profile';
 import PreviewBar from './components/previewSection/previewBar';
 import AddCompany from './components/addCompany/tpo';
@@ -38,10 +38,7 @@ function App() {
     
     <Router>
       <Switch>
-        <Route path = "/register">
-          <Register/>
-        </Route>
-        
+               
         <Route path = "/profile">
         </Route>
         <Route path = "/">
