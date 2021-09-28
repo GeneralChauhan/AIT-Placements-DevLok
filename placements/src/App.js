@@ -44,7 +44,7 @@ function App() {
         
         <Route path = "/profile">
         </Route>
-        <Route path = "/x">
+        <Route path = "/">
           <Form/>
         </Route>
         <Route path = "/dashboard" exact>

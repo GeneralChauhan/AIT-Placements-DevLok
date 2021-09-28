@@ -38,10 +38,10 @@ const Form = () => {
         .then((Result) =>{
           if(Result.Status == 'success'){
             console.log(Result);
-            <Redirect to="/"></Redirect>
+            <Redirect to="/dashboard"></Redirect>
           }
           else{
-            alert('INvalid Credentials')
+            alert('Invalid Credentials')
           }
         })
     //postData('http://localhost:3000/api/v1/auth/login',{role : role, email:Email , password: Password });
