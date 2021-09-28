@@ -3,6 +3,7 @@ import '../Login/Login.css'
 import logo from '../../assets/Logo.png';
 import Register from '../Register/Register';
 import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 
 
@@ -27,31 +28,28 @@ const Form = () => {
   }
 
 
-  const clickLogin = (e) => {
-    //e.preventDefault();
+  const clickLogin = async(e) => {
+    e.preventDefault();
     console.log({role : role, email:Email , password: Password });
-    async function postData(url, data) {
-      const response = await fetch(url, {
-              method:"POST",
-              body: JSON.stringify(data) // body data type must match "Content-Type" header
-      }).then((Response) =>Response.json())
-        .then((Result) =>{
-          if(Result.Status == 'success'){
-            console.log(Result);
-            <Redirect to="/dashboard" />
-          }
-          else{
-            alert('Invalid Credentials')
-          }
-        })
+      // const response = await fetch('http://localhost:3000/api/v1/auth/login', {
+      //         method:"POST",
+      //         headers: {'Content-Type':'application/json'},
+      //         body: {name:'Ajay'} // body data type must match "Content-Type" header
+      // });
+      const response = await axios.post('http://localhost:3000/api/v1/auth/login', { role:role, email:Email, password: Password });
+      console.log(response);
 
-      
-    postData('http://localhost:5000/api/v1/auth/login',{role : role, email:Email , password: Password });
+
+      // console.log(response);
+      // return response.json(); // parses JSON response into native JavaScript objects
     
-  }}
+    //postData('http://localhost:3000/api/v1/auth/login',{role : role, email:Email , password: Password });
+    
+  }
 
   function handleChange(event){
     setRole(event.target.value)
+    console.log(event.target.value)
   }
 
   const submitForm = (e) => {
@@ -73,7 +71,7 @@ const Form = () => {
     setRegisterdata([entry]);
     console.log(Registerdata);
     
-    fetch('http://localhost:5000/api/v1/auth/register',{
+    fetch('http://localhost:3000/api/v1/auth/register',{
       method: 'POST',
       headers: {
         'Content-Type':'application/json'
@@ -146,7 +144,27 @@ function validate(){
 
   return isValid;
 }
+
   
+
+    
+  
+  
+    
+  // async function postData(url = 'http://localhost:3000/api/v1/auth/login', data = {logindata}) {
+    
+  //   const response = await fetch(url, {
+  //           body: JSON.stringify(data) // body data type must match "Content-Type" header
+  //   });
+  //   return response.json(); // parses JSON response into native JavaScript objects
+  // }
+  
+  // postData('https://localhost:3000/api/v1/auth/login', { answer: 42 })
+  //   .then(data => {
+  //     console.log(data); 
+  //   });
+
+    
   
   return(
     <div>
@@ -160,8 +178,8 @@ function validate(){
                   
                   <select id="cars" name="cars" placeholder="Enter Role" onChange={handleChange} >
                       <option value="">Select</option>
-                      <option value="Admin" >Admin</option>
-                      <option value="Student">Student</option>
+                      <option value="admin" >Admin</option>
+                      <option value="student">Student</option>
                   </select>
             </div> 
             <div class="row">
@@ -280,7 +298,15 @@ function validate(){
         </div>
         }
     </div>
-
+  
+  
+          
+  
+  
+          
+              
+  
+              
               
             
       
