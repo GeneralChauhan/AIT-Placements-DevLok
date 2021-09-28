@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import '../Login/Login.css'
 import logo from '../../assets/Logo.png';
 import Register from '../Register/Register';
-import { Redirect } from 'react-router-dom';
+import { Redirect,Link} from 'react-router-dom';
 import axios from 'axios';
+import Sidebar from '../SideBar/sidebar';
+import CompList from '../compniesHomepage/companyPage';
 
 
 
@@ -38,6 +40,12 @@ const Form = () => {
       // });
       const response = await axios.post('http://localhost:3000/api/v1/auth/login', { role:role, email:Email, password: Password });
       console.log(response);
+      if(response.status===200){debugger;
+        <Link to='/dashboard'></Link>
+        
+       
+      }
+
 
 
       // console.log(response);
@@ -52,9 +60,7 @@ const Form = () => {
     console.log(event.target.value)
   }
 
-  const submitForm = (e) => {
-
-
+  const submitForm = async(e) => {
       
     // e.preventDefault();
     if(validate())
@@ -71,23 +77,8 @@ const Form = () => {
     setRegisterdata([entry]);
     console.log(Registerdata);
     
-    fetch('http://localhost:3000/api/v1/auth/register',{
-      method: 'POST',
-      headers: {
-        'Content-Type':'application/json'
-      },
-      body: JSON.stringify(entry)
-    }).then((Response) => Response.json())
-      .then((Result) =>{
-        if(Result.Status == 'success'){
-          console.log(Result);
-          <Redirect to="/"></Redirect>
-        }
-        else{
-          alert('Sijdio')
-        }
-      })
-
+    const response = await axios.post('http://localhost:3000/api/v1/auth/register', { fname:FirstName,lname:LastName,year:Year,branch:Branch,email:Email,regid:RegistrationID, password: Password  });
+      console.log(response);
 }
 
 function handleChangeYear(event){
@@ -101,7 +92,7 @@ function validate(){
   
   
   let isValid = true;
-  debugger;
+  
 
   if (!FirstName) {
     isValid = false;
@@ -193,10 +184,17 @@ function validate(){
                 onChange={(e)=>setPassword(e.target.value)} required/>
             </div>
             <div className="button-option">
-              <div id="button" class="row">
+
+              <div id="buttonL" class="row login">
                 <button type="submit" onClick={clickLogin}>Log in</button>
               </div>
-              <div id="button" class="row">
+              <div id="buttonL" class="row login">
+                <button type="submit" onClick={clickLogin}>Log in</button>
+              </div>
+              <div id="buttonL" class="row login">
+                <button type="submit" onClick={clickLogin}>Log in</button>
+              </div>
+              <div id="buttonR" class="row register">
                 <button type="button" onClick={()=>setIsRegister(true)}>Register</button>
               </div>
             </div>
