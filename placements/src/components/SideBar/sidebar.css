@@ -31,20 +31,20 @@
     list-style: none;
     /* display: flex; */
    
-    /* flex-direction: row; */
+    /* flex-direction: rowl; */
     /* justify-content: center;
     align-items: center; */
     margin-top: 3rem;
   
   }
-  .row{
+  .rowl{
       display: flex;
       flex-direction: row;
       margin-left: 2rem;
       margin-top:1rem;
 
   }
-  .sidebarList .row:hover{
+  .sidebarList .rowl:hover{
     
     cursor: pointer;
   }
@@ -52,12 +52,12 @@
       display: none;
   }
   
-  .row #icon{
+  .rowl #icon{
     flex: 30%;
     display: grid;
     place-items:center;
   }
-  .row #title{
+  .rowl #title{
     flex:70%;
   }
 .sidebar ul{

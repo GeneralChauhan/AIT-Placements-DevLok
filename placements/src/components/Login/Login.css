@@ -15,6 +15,7 @@
   border-radius: 25px;
   margin-top: 0em;
 
+
   
 }
 
@@ -26,7 +27,11 @@
   align-items: center;
   padding-top: 2rem;
   max-width: 100%;
+  justify-content: space-around;
   
+}
+.row {
+  margin: 20px;
 }
 #cars{
   width: 200px;
@@ -69,6 +74,17 @@
 .button-option{
   display: flex;
   justify-content: center;
+  align-items: center;
+
+
+}
+.button-option button{
+  background-color: #1DA1F2;
+  border-radius: 8px ;
+  font-family: Inter;
+}
+.login{
+  margin: 20px;
 }
 
 .row button{
@@ -106,6 +122,16 @@
    text-align: center;
    padding-top: 2rem;
    margin-top: 1.5rem;
+}
+
+.loggy{  
+  margin-left:30px ;
+  border-radius: 20px;
+  background-color: #1DA1F2;
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 700;
+  color: #FEFDFF;
 }
 
 
@@ -216,9 +242,6 @@ form .Button button{
 
 }
 
-form .Button button:hover{
-  
-}
 
 .error {
   color: red;

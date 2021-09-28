@@ -3,9 +3,13 @@ import '../Login/Login.css'
 import logo from '../../assets/Logo.png';
 import Register from '../Register/Register';
 import { Redirect,Link} from 'react-router-dom';
+
+import { Route } from "react-router";
 import axios from 'axios';
 import Sidebar from '../SideBar/sidebar';
 import CompList from '../compniesHomepage/companyPage';
+import { useHistory } from "react-router-dom";
+
 
 
 
@@ -28,6 +32,7 @@ const Form = () => {
   const handleClick = () => {
     setErrorMessage("Example error message!")
   }
+  const history = useHistory();
 
 
   const clickLogin = async(e) => {
@@ -40,9 +45,11 @@ const Form = () => {
       // });
       const response = await axios.post('http://localhost:3000/api/v1/auth/login', { role:role, email:Email, password: Password });
       console.log(response);
-      if(response.status===200){debugger;
-        <Link to='/dashboard'></Link>
+
+      if(response.status===200){
+        history.push("/dashboard");
         
+
        
       }
 
@@ -185,17 +192,14 @@ function validate(){
             </div>
             <div className="button-option">
 
-              <div id="buttonL" class="row login">
-                <button type="submit" onClick={clickLogin}>Log in</button>
+
+              <div className='loggy'>
+                  <button type="submit" onClick={clickLogin}>Log in</button>
               </div>
-              <div id="buttonL" class="row login">
-                <button type="submit" onClick={clickLogin}>Log in</button>
-              </div>
-              <div id="buttonL" class="row login">
-                <button type="submit" onClick={clickLogin}>Log in</button>
-              </div>
-              <div id="buttonR" class="row register">
-                <button type="button" onClick={()=>setIsRegister(true)}>Register</button>
+
+              <div className='loggy'>
+                  <button type="submit" onClick={()=>setIsRegister(true)}>Register</button>
+
               </div>
             </div>
           </form>
