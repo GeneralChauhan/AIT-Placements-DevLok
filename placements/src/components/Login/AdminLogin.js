@@ -43,7 +43,7 @@ const Form = () => {
       //         headers: {'Content-Type':'application/json'},
       //         body: {name:'Ajay'} // body data type must match "Content-Type" header
       // });
-      const response = await axios.post('http://localhost:3000/api/v1/auth/login', { role:role, email:Email, password: Password });
+      const response = await axios.post('/api/v1/auth/login', { role:role, email:Email, password: Password });
       console.log(response);
 
       if(response.status===200){
@@ -84,7 +84,7 @@ const Form = () => {
     setRegisterdata([entry]);
     console.log(Registerdata);
     
-    const response = await axios.post('http://localhost:3000/api/v1/auth/register', { fname:FirstName,lname:LastName,year:Year,branch:Branch,email:Email,regid:RegistrationID, password: Password  });
+    const response = await axios.post('/api/v1/auth/register', { fname:FirstName,lname:LastName,year:Year,branch:Branch,email:Email,regid:RegistrationID, password: Password  });
       console.log(response);
 }
 

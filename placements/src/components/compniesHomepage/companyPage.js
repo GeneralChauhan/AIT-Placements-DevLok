@@ -16,7 +16,7 @@ const CompList =()=> {
     let role = 'admin';
     // console.log(match.params);
     const loadNotice = useCallback(()=>{
-        const apiUrl_Notice = encodeURI(`http://localhost:3000/api/v1/notice`);
+        const apiUrl_Notice = encodeURI(`/api/v1/notice`);
        axios.all([
            axios.get(apiUrl_Notice).then((response)=>{
                setNotice(response.data.notices)
