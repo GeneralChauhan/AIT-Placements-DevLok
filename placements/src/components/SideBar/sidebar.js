@@ -98,12 +98,12 @@ return (
     </ul>
 
     <div className="button-option lower">
-            <div id="button" class="row">
+            <div id="button" class="rowl">
               <button type="button" ><Link to='/x'>LOGOUT</Link></button>
               
             </div>
-            {this.state.role === "admin" ? (
-            <div id="button" class="row">
+            {this.state.role === "user" ? (
+            <div id="button" class="rowl">
               <button type="button"><Link to='/addNotice'>ADD</Link> </button>
             </div>
              ) : (
