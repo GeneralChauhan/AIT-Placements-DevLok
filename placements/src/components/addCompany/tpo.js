@@ -11,6 +11,9 @@ import OverlayModal from './components/overlayModal';
 import { Prompt } from 'react-router-dom';
 import FeedbackModal from './components/feedbackModal';
 import Upload from '../upload/Upload';
+import { Link } from "react-router-dom";
+import CompList from '../compniesHomepage/companyPage';
+
 
 class addCompany extends Component {
     state = {
@@ -202,6 +205,9 @@ class addCompany extends Component {
                     />
                     <Upload />
                         <button type="submit" className="col-12 mx-auto btn btn-primary my-2" onClick={this.handlePreSubmit}>Submit</button>
+                        <div id="button" class="row">
+                          <button type="button"><Link to='/dashboard'>Back</Link> </button>
+                        </div>
                         <SweetAlert
                             show={this.state.isShowPreSubmit}
                             title="Submit"
