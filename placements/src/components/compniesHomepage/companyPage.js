@@ -2,9 +2,6 @@ import React, {useState, useEffect, useCallback} from 'react';
 import axios from 'axios';
 import PreviewBar from '../previewSection/previewBar.js';
 import './companyPage.css';
-import parse from 'html-react-parser';
-import { Badge } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 
 
@@ -13,28 +10,32 @@ const CompList =()=> {
     const [notice,setNotice] = useState([]);
     const [selectedcompany,setSelectedcompany]=useState();
     const [searchTerm,setSearchTerm]=useState('');
-    let role = 'admin';
+    
+    
+
+    
+    let role = 'student';
     // console.log(match.params);
     const loadNotice = useCallback(()=>{
-        const apiUrl_Notice = encodeURI(`/api/v1/notice`);
+        const apiUrl_Notice = encodeURI(`http://localhost:3000/api/v1/notice`);
        axios.all([
            axios.get(apiUrl_Notice).then((response)=>{
                setNotice(response.data.notices)
-               console.log(response.data.notices)
+              
                
            })
        ]) 
        
     },[]);
-    console.log(loadNotice);
+    
     useEffect(()=>{
         loadNotice()
     }, [loadNotice])
 
-    const parseHTMLTags = (str) => {
-        str = str.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
-        return str
-    }
+    // const parseHTMLTags = (str) => {
+    //     str = str.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+    //     return str
+    // }
 
     const parseDate = (str) => {
         let dt = new Date(str);
@@ -44,28 +45,31 @@ const CompList =()=> {
     return(
         <div className="CompList">
             <div className="mid">
-                <div className="mid-up">
-                    <div className="uppercontent">
-                        <div className="input-box">
-                            
-                            <input type="text" placeholder="Search for Companies"
-                            //value={FirstName} 
-                            onChange={(e)=> setSearchTerm(e.target.value)}
-                            />
-                            <h2 className="poppins">Companies</h2>
-                        </div>
-                    </div> 
+                <div className="dim">
+                    <div className="mid-up">
+                        <div className="uppercontent">
+                            <div className="input-box">
+                                
+                                <input type="text" placeholder="Search for Companies"
+                                //value={FirstName} 
+                                onChange={(e)=> setSearchTerm(e.target.value)}
+                                />
+                                <h2 className="poppins">Companies</h2>
+                            </div>
+                        </div> 
+                    </div>
                 </div>
                 <div className="mid-bottom">
                 {notice.filter((el)=>{
-                    if(searchTerm=="")
+                    if(searchTerm==="")
                         return el;
                     else if(el.title.toLowerCase().includes(searchTerm.toLowerCase())){
                         return el;
                     }
 
                 }).map(el => (
-                            <div className="cards" onClick={() => setSelectedcompany(el)}>
+                            <div className='cardi' >
+                                <div className="cards" onClick={() => setSelectedcompany(el)}>
                                 <div className="col1">
                                     <div className="heading">{el.title}</div>
                                     <div className="heading">{parseDate(el.createdAt)}</div>
@@ -84,7 +88,8 @@ const CompList =()=> {
                                       )}
                                      
                                 </div>
-                            </div>         
+                            </div> 
+                            </div>        
                                      
                         ))}  
                               

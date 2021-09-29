@@ -5,9 +5,9 @@ import logo from '../../assets/Logo.png';
 import menu_icon from '../../assets/icons8-menu.svg';
 import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import PieChartIcon from '@material-ui/icons/PieChart';
-import Backdrop from '../../utils/Backdrop/Backdrop';
+// import Backdrop from '../../utils/Backdrop/Backdrop';
 import { Link } from "react-router-dom";
-import Form from '../Login/AdminLogin'
+// import Form from '../Login/AdminLogin'
 
 
 class Sidebar extends Component {
@@ -15,7 +15,7 @@ class Sidebar extends Component {
     super(props);
     this.state = {
         sideDrawerOpen: false,
-        role:'admin'
+        role:'student'  
     };
   }
 
@@ -35,7 +35,7 @@ class Sidebar extends Component {
       {
         title: "Latest",
         icon: <HomeWorkIcon />,
-        link: "/latest"
+        link: "/dashboard"
       },
       {
         title: "Past Stats",
@@ -45,15 +45,15 @@ class Sidebar extends Component {
 
     ];
 
-    let sideDrawer = "Navbar";
-    let backDrop = false;
-    let NavbarLink;
+    // let sideDrawer = "Navbar";
+    // let backDrop = false;
+    // let NavbarLink;
 
-    if(this.state.sideDrawerOpen){
-      sideDrawer = "NavBar open"
-      backDrop = true
-      NavbarLink = this.drawerToggleClickHandler
-    }
+    // if(this.state.sideDrawerOpen){
+    //   sideDrawer = "NavBar open"
+    //   backDrop = true
+    //   NavbarLink = this.drawerToggleClickHandler
+    // }
 
 
     
@@ -99,10 +99,10 @@ return (
 
     <div className="button-option lower">
             <div id="button" class="rowl">
-              <button type="button" ><Link to='/x'>LOGOUT</Link></button>
+              <button type="button" ><Link to='/'>LOGOUT</Link></button>
               
             </div>
-            {this.state.role === "user" ? (
+            { this.state.role === "admin" ? (
             <div id="button" class="rowl">
               <button type="button"><Link to='/addNotice'>ADD</Link> </button>
             </div>

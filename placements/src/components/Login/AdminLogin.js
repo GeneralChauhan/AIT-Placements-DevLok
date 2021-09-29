@@ -2,12 +2,8 @@ import React, { useState } from 'react'
 import '../Login/Login.css'
 import logo from '../../assets/Logo.png';
 
-import { Redirect,Link} from 'react-router-dom';
-
-import { Route } from "react-router";
 import axios from 'axios';
-import Sidebar from '../SideBar/sidebar';
-import CompList from '../compniesHomepage/companyPage';
+
 import { useHistory } from "react-router-dom";
 
 
@@ -18,17 +14,19 @@ const Form = () => {
   const [Email , setEmail] = useState("");
   const [Password , setPassword] = useState("");
   const [role , setRole] = useState("");
-  const [logindata , setLoginData] = useState([]);
 
+  
   const [FirstName , setFirstName] = useState("");
   const [LastName , setLastName] = useState("");
   const [Year , setYear] = useState("");
+  const [username, setUsername] = useState("");
   const [Branch , setBranch] = useState("");
   const [RegistrationID , setRegistrationID] = useState(0);
   const [ConfirmPassword , setConfirmPassword] = useState("");
-  const [Registerdata , setRegisterdata] = useState([]);
+  // const [Registerdata , setRegisterdata] = useState([]);
   const [IsRegister , setIsRegister] = useState(false);
   const [errorMessage, setErrorMessage] = useState({});
+  // username = FirstName+RegistrationID;
   const handleClick = () => {
     setErrorMessage("Example error message!")
   }
@@ -37,21 +35,25 @@ const Form = () => {
 
   const clickLogin = async(e) => {
     e.preventDefault();
-    console.log({role : role, email:Email , password: Password });
+    
       // const response = await fetch('http://localhost:3000/api/v1/auth/login', {
       //         method:"POST",
       //         headers: {'Content-Type':'application/json'},
       //         body: {name:'Ajay'} // body data type must match "Content-Type" header
       // });
-      const response = await axios.post('/api/v1/auth/login', { role:role, email:Email, password: Password });
-      console.log(response);
-
-      if(response.status===200){
-        history.push("/dashboard");
-        
-
-       
-      }
+      if(validlogin())
+      {axios.post('http://localhost:3000/api/v1/auth/login', { role:role, email:Email, password: Password })
+      .then(response => {
+        if(response.status==200){
+          history.push("/dashboard");
+        }
+       }).catch(error =>{
+         alert(`invalid credentials`);
+       })}
+       else{
+         alert(`You are not Registered, Please Register`)
+       }
+      
 
 
 
@@ -61,31 +63,78 @@ const Form = () => {
     //postData('http://localhost:3000/api/v1/auth/login',{role : role, email:Email , password: Password });
     
   }
+  
 
   function handleChange(event){
     setRole(event.target.value)
-    console.log(event.target.value)
+    
   }
 
   const submitForm = async(e) => {
       
-    // e.preventDefault();
+    e.preventDefault();
+    debugger;
     if(validate())
     {
       setIsRegister(false);
     }
-    else{
-      handleClick()
-      {errorMessage && <div className="error"> {errorMessage} </div>}
+    // else{
+    //   handleClick()
+    //   errorMessage && <div className="error"> {errorMessage} </div>
 
-    }
-    const entry = { fname:FirstName,lname:LastName,year:Year,branch:Branch,email:Email
-                  ,regid:RegistrationID, password: Password }
-    setRegisterdata([entry]);
-    console.log(Registerdata);
+    // }
+    // const entry = { fname:FirstName,lname:LastName,year:Year,branch:Branch,email:Email
+    //               ,regid:RegistrationID, password: Password }
+    // setRegisterdata([entry]);
     
-    const response = await axios.post('/api/v1/auth/register', { fname:FirstName,lname:LastName,year:Year,branch:Branch,email:Email,regid:RegistrationID, password: Password  });
-      console.log(response);
+    
+  axios.post('http://localhost:3000/api/v1/auth/register', { fname:FirstName,lname:LastName,year:Year,branch:Branch,email:Email,regid:RegistrationID, password: Password,username:FirstName  })
+  .then(response =>{
+    if(response.status==200){
+      alert(`You are registered`);
+      history.push("/");
+    }
+  })
+  .catch(error =>{
+    alert(`invalid credentials! Not registered`);
+  })
+   
+}
+
+function validlogin(){
+  
+  
+  let isValid = true;
+  if(!role){
+    isValid = false;
+    alert(`Please enter Role`);
+    return isValid;
+
+  }
+  
+
+  if (!Email) {
+    isValid = false;
+    alert(`Please enter your email Address.`);
+    return isValid;
+  }
+  if (typeof Email !== "undefined") {
+      
+    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    if (!pattern.test(Email)) {
+      isValid = false;
+      alert(`Please enter valid email address.`);
+      return isValid;
+    }
+  }
+  if (!Password) {
+    isValid = false;
+    
+    alert(`Please enter your password.`);
+    return isValid;
+  }
+
+  return isValid;
 }
 
 function handleChangeYear(event){
@@ -100,15 +149,18 @@ function validate(){
   
   let isValid = true;
   
+  
 
   if (!FirstName) {
     isValid = false;
-    setErrorMessage["FirstName"] = "Please enter your name.";
+    alert(`Please enter your name.`);
+    return isValid;
   }
 
   if (!Email) {
     isValid = false;
-    setErrorMessage["Email"] = "Please enter your email Address.";
+    alert(`Please enter your email Address.`);
+    return isValid;
   }
 
   if (typeof Email !== "undefined") {
@@ -116,25 +168,43 @@ function validate(){
     var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
     if (!pattern.test(Email)) {
       isValid = false;
-      setErrorMessage["Email"] = "Please enter valid email address.";
+      alert(`Please enter valid email address.`);
     }
+    return isValid;
+  }
+
+  if (!Branch) {
+    isValid = false;
+    alert(`Please enter your Branch`);
+    return isValid;
+  }
+
+  if (!Year) {
+    isValid = false;
+    alert(`Please enter your Year`);
+    return isValid;
   }
 
   if (!Password) {
     isValid = false;
-    setErrorMessage["Password"] = "Please enter your password.";
+    alert(`Please enter your password.`);
+    return isValid;
   }
 
   if (!ConfirmPassword) {
     isValid = false;
-    setErrorMessage["ConfirmPassword"] = "Please enter your confirm password.";
+    alert(`Please enter your confirm password.`);
+    return isValid;
   }
+
+  
 
   if (typeof Password !== "undefined" && typeof ConfirmPassword !== "undefined") {
       
-    if (Password != ConfirmPassword) {
+    if (Password !== ConfirmPassword) {
       isValid = false;
-      setErrorMessage["Password"] = "Passwords don't match.";
+      alert(`Passwords don't match.`);
+      return isValid;
     }
   } 
 
@@ -171,7 +241,7 @@ function validate(){
          <div id="loginform" >
             <img src={logo} alt="logo" className="image"/>
             <form action="POST" onSubmit = {clickLogin}>
-            <div class="row"> 
+            <div className="row"> 
                   <label htmlFor="role">Role</label>
                   
                   <select id="cars" name="cars" placeholder="Enter Role" onChange={handleChange} >
@@ -180,12 +250,12 @@ function validate(){
                       <option value="student">Student</option>
                   </select>
             </div> 
-            <div class="row">
+            <div className="row">
               <label htmlFor="email">Email ID</label>
               <input type="text" placeholder="Enter your email" value={Email} 
                 onChange={(e)=> setEmail(e.target.value)} required/>
             </div>
-            <div class="row">
+            <div className="row">
               <label htmlFor="password">Password</label>
               <input type="password" placeholder="Enter your password" value={Password}
                 onChange={(e)=>setPassword(e.target.value)} required/>
@@ -199,7 +269,7 @@ function validate(){
               </div>
 
               <div className='loggy'>
-                  <button type="submit" onClick={()=>setIsRegister(true)}>Register</button>
+                  <button type="button" onClick={()=>setIsRegister(true)}>Register</button>
 
               </div>
             </div>
@@ -211,8 +281,8 @@ function validate(){
         
       
         <div className="Backbody">
-        <div class="rgform">
-          <div class="title">Registration</div>
+        <div className="rgform">
+          <div className="title">Registration</div>
           <form action="POST" onSubmit = {submitForm}>
           
             <div className="user-details">
@@ -264,6 +334,7 @@ function validate(){
                  value={RegistrationID} 
                  onChange={(e)=> setRegistrationID(e.target.value)}/>
               </div>
+              
               <div className="input-box">
                 <span className="details">Password</span>
                 <input type="password" placeholder="Enter Password" required 
@@ -321,5 +392,4 @@ function validate(){
 
 
 export default Form; 
-
 

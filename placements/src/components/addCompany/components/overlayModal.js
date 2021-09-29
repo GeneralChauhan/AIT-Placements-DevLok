@@ -18,7 +18,7 @@ const OverlayModal = ({modalContent,show,onHide}) => {
                 </Modal.Header>
                 <Modal.Body>
                     <p className="text-center">
-                    <i class={`fa ${modalContent.icon} display-3`} aria-hidden="true"></i>
+                    <i className={`fa ${modalContent.icon} display-3`} aria-hidden="true"></i>
                     <br/>
                     {modalContent.text}
                     </p>

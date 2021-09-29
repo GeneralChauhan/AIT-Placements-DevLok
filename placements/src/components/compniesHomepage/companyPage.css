@@ -162,13 +162,27 @@
     outline: none;
 
 }
+
+.dim{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 90%;
+    border-bottom:1px solid black ;
+}
+.dim :hover{
+    cursor: pointer;
+}
 .mid-up{
     display: flex;
     margin-top: 20px;
-    height: 20%;
-    border-bottom:1px solid black ;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    height: 18%;
+    
     justify-content: flex-start;
     align-self: left;
+    padding: 0%;
 }
 
 .poppins{

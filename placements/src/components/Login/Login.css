@@ -75,13 +75,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-
+  margin-left: -40px;
 }
 .button-option button{
   background-color: #1DA1F2;
   border-radius: 8px ;
   font-family: Inter;
+  text-decoration: none;
 }
 .login{
   margin: 20px;

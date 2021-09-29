@@ -6,13 +6,23 @@
   display: flex;
   /* display: flex; */
   justify-content: space-between;
-  flex-direction:row;
+  /* flex-direction:; */
   /* background-color: white; */
+}
+.mainPage{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 
-  
 }
 body{
   padding: 0%;
   margin: 0%;
+}
+.Profile{
+  height: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction:; */
 }
 

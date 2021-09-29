@@ -1,8 +1,8 @@
-import React, { useState }  from "react";
+import React from "react";
 import '../Profile/Profile.css';
 import ProfileData from '../Profile/ProfileData.json';
 import userpic from '../../assets/user.png';
-import logo from '../../assets/Logo.png';
+
 
 
 
@@ -10,7 +10,7 @@ const Profile = (props) => {
     return(
         
         <div className="containe ">
-        {/* <Sidebar/> */}
+       
             <form method="" className="emp-profile">
                 
                 <div className="userdata ">
