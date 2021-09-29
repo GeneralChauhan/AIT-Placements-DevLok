@@ -48,11 +48,17 @@ const Form = () => {
           history.push("/dashboard");
         }
        }).catch(error =>{
-         alert(`invalid credentials`);
+        if(error.response.status==400){
+          alert(`Email not Registered`);
+        }
+        if(error.response.status==401){
+          alert(`Invalid role selected`);
+        }
+        if(error.response.status==402){
+          alert('invalid password');
+        }
        })}
-       else{
-         alert(`You are not Registered, Please Register`)
-       }
+       
       
 
 
@@ -88,7 +94,7 @@ const Form = () => {
     // setRegisterdata([entry]);
     
     
-  axios.post('http://localhost:3000/api/v1/auth/register', { fname:FirstName,lname:LastName,year:Year,branch:Branch,email:Email,regid:RegistrationID, password: Password,username:FirstName  })
+  axios.post('http://localhost:3000/api/v1/auth/register', { fname:FirstName,lname:LastName,year:Year,branch:Branch,email:Email,regid:RegistrationID, password: Password,username:FirstName+RegistrationID  })
   .then(response =>{
     if(response.status==200){
       alert(`You are registered`);
@@ -96,7 +102,15 @@ const Form = () => {
     }
   })
   .catch(error =>{
-    alert(`invalid credentials! Not registered`);
+    if(error.response.status==400){
+      alert(`Email already Registered`);
+    }
+    if(error.response.status==401){
+      alert(`Registrion Number already Registered`);
+    }
+    if(error.response.status==402){
+      alert('Wrong Registration Number');
+    }
   })
    
 }
@@ -305,6 +319,7 @@ function validate(){
                   
                   <select id="year" name="year" onChange={handleChangeYear} required>
                       <option value="">Select Graduation Year</option>
+                      <option value="2nd year">Second Year</option>
                       <option value="3rd year" >Third Year</option>
                       <option value="4th year">Fourth Year</option>
                   </select>
@@ -314,11 +329,10 @@ function validate(){
                   
                   <select id="branch" name="branch" onChange={handleChangeBranch} required>
                       <option value="">Select Branch</option>
-                      <option value="COMP" >Computer Engineering</option>
+                      <option value="Comp" >Computer Engineering</option>
                       <option value="IT">Information Technology</option>
                       <option value="ENTC" >Electronics and Telecommunication</option>
-                      <option value="MECH">Mechnical</option>
-                      <option value="ME">ME</option>
+                      <option value="Mech">Mechnical</option>
                   </select>
               </div> 
               <div className="input-box">
