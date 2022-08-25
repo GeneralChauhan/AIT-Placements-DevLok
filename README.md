@@ -1,5 +1,5 @@
 # Abhi I'll be u[dating this repo after everything I have learnt in react in the last year.
-## Original branch is the ```master``` one, so purana code dekhna ho toh udhar jana
+## Original branch is the ```main``` one, so purana code dekhna ho toh udhar jana
 
 
 ## Gods_Web2 
