@@ -1,5 +1,9 @@
-# Gods_Web2 
-# 👋 Hi there!
+# Abhi I'll be u[dating this repo after everything I have learnt in react in the last year.
+## Original branch is the ```master``` one, so purana code dekhna ho toh udhar jana
+
+
+## Gods_Web2 
+## 👋 Hi there!
 
 This is our submission for DevLok conducted by AIT OSS Club!
 
@@ -15,7 +19,7 @@ The design process took 3 days where we tried to make a simple yet efficient des
 2. Then we got learning stuff.
 We(I and Kamakshi) were adept with good knowledge of HTML, CSS and JS. We then watched a crash course video on React which gave us some understanding aboout how things worked in React.  
         
-    In the same time Anand got statrted with the backend course provided by the mentors. He also learned a bit about data base during that time.  
+    In the same time Anand got statrted with the backend course provided by the mentors. He also learned a bit about database during that time.  
     
 3. Build Process
 It took us about 9 days to bring the project to an acceptable state where front end was ready and backend too but it was not connected. It took us 1 day more to connect them together and a lot of help from the mentors
